@@ -249,7 +249,7 @@ class _ProductState extends State<Product> {
                             child: Image.network(
                               itemdata!.data!.itemImages![0].imageUrl
                                   .toString(),
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           )),
                       Row(
@@ -669,7 +669,7 @@ class _ProductState extends State<Product> {
                                             child: Image.network(
                                               itemdata!.relateditems![index]
                                                   .imageUrl,
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.contain,
                                             ),
                                           ),
                                         ),

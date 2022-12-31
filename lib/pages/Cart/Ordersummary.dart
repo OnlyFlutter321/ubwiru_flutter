@@ -793,19 +793,20 @@ class _OrdersummaryState extends State<Ordersummary> {
               width: double.infinity,
               child: TextButton(
                 onPressed: () async {
-                  print(minorder_amount);
-                  print("x $maxorder_amount");
-                  print("x $ordersubtotal");
-                  if (int.parse(minorder_amount!) <
-                          double.parse(ordersubtotal) ||
-                      int.parse(maxorder_amount!) >
-                          double.parse(ordersubtotal)) {
-                    print("1");
-                    loader.showErroDialog(
-                      description:
-                          "${LocaleKeys.Order_amount_must_be_between.tr()} $minorder_amount ${LocaleKeys.TO.tr()} $maxorder_amount",
-                    );
-                  } else {
+                  
+                  // print(minorder_amount);
+                  // print("x $maxorder_amount");
+                  // print("x $ordersubtotal");
+                  // if (int.parse(minorder_amount!) <
+                  //         double.parse(ordersubtotal) ||
+                  //     int.parse(maxorder_amount!) >
+                  //         double.parse(ordersubtotal)) {
+                  //   print("1");
+                  //   loader.showErroDialog(
+                  //     description:
+                  //         "${LocaleKeys.Order_amount_must_be_between.tr()} $minorder_amount ${LocaleKeys.TO.tr()} $maxorder_amount",
+                  //   );
+                  // } else {
                     isopencloseMODEL? isopendata;
 
                     loader.showLoading();
@@ -882,7 +883,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                     } else {
                       loader.showErroDialog(description: isopendata.message);
                     }
-                  }
+                  // }
                 },
                 style: TextButton.styleFrom(backgroundColor: color.Metablue),
                 child: Text(

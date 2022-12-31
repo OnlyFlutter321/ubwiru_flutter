@@ -13,6 +13,6 @@ class color {
   static var skyblue = Color(0xff30B0C7);
   static var blue = Color(0xff007AFF);
   static var darkred = Color(0xffFF3B30);
-  static var Metablue = Color(0xff215272);
+  static var Metablue = Colors.orange;
   static var grey = Colors.grey;
 }

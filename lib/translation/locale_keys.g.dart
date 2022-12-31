@@ -6,7 +6,7 @@ abstract class  LocaleKeys {
   static const arabic = 'arabic';
   static const welcome = 'welcome';
   static const comment1 = 'comment1';
-  static const Single_Ecommerce = 'Single_Ecommerce';
+  static const Single_Ecommerce = 'India Shopping Bazaar';
   static const APP_packagename = 'APP_packagename';
   static const Login = 'Login';
   static const Signin_to_your_account = 'Signin_to_your_account';
@@ -267,8 +267,8 @@ abstract class  LocaleKeys {
   static const YYYY = 'YYYY';
   static const CVV = 'CVV';
   static const comment34 = 'comment34';
-  static const Gravityinfotech = 'Gravityinfotech';
-  static const Infotechgravitygmail = 'Infotechgravitygmail';
+  static const Gravityinfotech = 'India shopping bazaar';
+  static const Infotechgravitygmail = 'Indiashoppingbazaar@gmail.com';
   static const Darkmode = 'Darkmode';
   static const Name = 'Name';
   static const Phoneno = 'Phoneno';

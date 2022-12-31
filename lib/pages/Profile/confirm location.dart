@@ -84,6 +84,7 @@ class _Confirm_locationState extends State<Confirm_location> {
       var response =
           await Dio().post(DefaultApi.appUrl + PostAPI.addaddress, data: map);
       var finallist = response.data;
+      print(finallist);
       addressdata = addtocartmodel.fromJson(finallist);
       loader.hideLoading();
       if (addressdata!.status == 1) {

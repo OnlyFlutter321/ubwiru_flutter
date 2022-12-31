@@ -40,7 +40,7 @@ class MyThemes {
 
   static final LightTheme = ThemeData(
       // primarySwatch: Colors.red,
-      primaryColor: Color(0xff0D9444),
+      primaryColor: Colors.orange,
       primaryColorDark: color.blackbutton,
       appBarTheme: const AppBarTheme(
           elevation: 0,

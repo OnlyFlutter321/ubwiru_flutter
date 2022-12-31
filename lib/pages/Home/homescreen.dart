@@ -57,6 +57,7 @@ class _HomescreenState extends State<Homescreen> {
   // Timer? _timer;
 
   Future homescreenAPI() async {
+    
     // await Future.delayed(Duration(seconds: 3));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     username = (prefs.getString(UD_user_name) ?? "");
@@ -71,6 +72,7 @@ class _HomescreenState extends State<Homescreen> {
         DefaultApi.appUrl + PostAPI.Home,
         data: map,
       );
+print('start');
 
       var finalist = await response.data;
       print(finalist);
@@ -313,7 +315,7 @@ class _HomescreenState extends State<Homescreen> {
                             ),
                             SizedBox(
                                 height: 23.h,
-                                width: double.infinity,
+                                // width: double.infinity,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   itemCount:
@@ -359,7 +361,7 @@ class _HomescreenState extends State<Homescreen> {
                                             homedata!.banners!
                                                 .topbanners![index].image
                                                 .toString(),
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),
@@ -561,7 +563,7 @@ class _HomescreenState extends State<Homescreen> {
                                                       .trendingitems![index]
                                                       .imageUrl
                                                       .toString(),
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),
@@ -1199,7 +1201,7 @@ class _HomescreenState extends State<Homescreen> {
                                                   homedata!.todayspecial![index]
                                                       .imageUrl
                                                       .toString(),
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),
@@ -1735,7 +1737,7 @@ class _HomescreenState extends State<Homescreen> {
                                             homedata!.banners!
                                                 .bannersection2![index].image
                                                 .toString(),
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           ),
                                         )),
                                   );
@@ -1836,7 +1838,7 @@ class _HomescreenState extends State<Homescreen> {
                                                       .recommendeditems![index]
                                                       .imageUrl
                                                       .toString(),
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),
@@ -2382,7 +2384,7 @@ class _HomescreenState extends State<Homescreen> {
                                             homedata!.banners!
                                                 .bannersection3![index].image
                                                 .toString(),
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           ),
                                         )),
                                   );

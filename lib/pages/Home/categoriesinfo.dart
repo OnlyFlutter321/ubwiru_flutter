@@ -256,7 +256,7 @@ class categories_itemsState extends State<categories_items> {
                                                 .items![_index]
                                                 .subcategoryItems![index]
                                                 .imageUrl,
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
                                       ),

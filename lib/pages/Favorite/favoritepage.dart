@@ -46,7 +46,7 @@ class _FavoriteState extends State<Favorite> {
 
       var response =
           await Dio().post(DefaultApi.appUrl + PostAPI.Favoritelist, data: map);
-      print(response);
+      print(response.data);
       favoritedata = favoritelistmodel.fromJson(response.data);
       print(favoritedata!.data!.length);
 
@@ -79,8 +79,8 @@ class _FavoriteState extends State<Favorite> {
         "addons_price": "",
         "addons_total_price": numberFormat.format(double.parse("0")),
       };
-    
-      var response =
+     
+           var response =
           await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
       addtocartdata = addtocartmodel.fromJson(response.data);
      

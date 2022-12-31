@@ -275,140 +275,142 @@ class _PaymentoptionState extends State<Paymentoption> {
           width: double.infinity,
           child: TextButton(
             onPressed: () async {
+
               isopencloseMODEL? isopendata;
               if (selectedindex == null) {
                 loader.showErroDialog(
                     description: LocaleKeys.Please_select_payment_option.tr());
               } else {
-                loader.showLoading();
-                var map = {
-                  "user_id": userid,
-                };
-                print(map);
-                var response = await Dio().post(
-                  DefaultApi.appUrl + PostAPI.isopenclose,
-                  data: map,
-                );
-                print(response);
-                isopendata = isopencloseMODEL.fromJson(response.data);
-                loader.hideLoading();
-                if (isopendata.status == 1) {
-                  if (isopendata.isCartEmpty == "0") {
-                    if (namepay == "COD") {
-                      placeorderAPI("1");
-                    } else if (namepay == "Wallet") {
-                      print(widget.ordertotal!);
-                      print(paymentlist!.totalWallet);
-                      if (double.parse(widget.ordertotal!) >=
-                          double.parse(paymentlist!.totalWallet.toString())) {
-                        loader.showErroDialog(
-                          description: LocaleKeys
-                                  .You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option
-                              .tr(),
-                        );
-                      } else {
-                        placeorderAPI("2");
-                      }
-                    } else if (namepay == "RazorPay") {
-                      Get.to(() => orderrazorpay(
-                            // order
-                            widget.ordertotal,
-                            widget.ordertype,
-                            widget.offer_code,
-                            widget.discount_amount,
-                            widget.tax_amount,
-                            widget.delivery_charge,
-                            //address
-                            widget.addresstype,
-                            widget.address,
-                            widget.area,
-                            widget.houseno,
-                            widget.lang,
-                            widget.lat,
-                            // extra
-                            widget.ordernote,
-                            //key
-                            public_key,
-                            secret_key,
-                            currency,
-                          ));
-                    } else if (namepay == "Stripe") {
-                      print("object");
-                      Get.to(() => orderstripe(
-                            //order
-                            widget.ordertotal,
-                            widget.ordertype,
-                            widget.offer_code,
-                            widget.discount_amount,
-                            widget.tax_amount,
-                            widget.delivery_charge,
-                            // address
-                            widget.addresstype,
-                            widget.address,
-                            widget.area,
-                            widget.houseno,
-                            widget.lang,
-                            widget.lat,
-                            //extra
-                            widget.ordernote,
-                          ));
-                    } else if (namepay == "Flutterwave") {
-                      print(currency);
-                      Get.to(() => orderflutterwave(
-                            widget.ordertotal,
-                            widget.ordertype,
-                            widget.offer_code,
-                            widget.discount_amount,
-                            widget.tax_amount,
-                            widget.delivery_charge,
-                            //address
-                            widget.addresstype,
-                            widget.address,
-                            widget.area,
-                            widget.houseno,
-                            widget.lang,
-                            widget.lat,
-                            //
-                            widget.ordernote,
-                            //key
-                            public_key,
-                            secret_key,
+                loader.showErroDialog(description: 'Error 404');
+                // loader.showLoading();
+                // var map = {
+                //   "user_id": userid,
+                // };
+                // print(map);
+                // var response = await Dio().post(
+                //   DefaultApi.appUrl + PostAPI.isopenclose,
+                //   data: map,
+                // );
+                // print(response);
+                // isopendata = isopencloseMODEL.fromJson(response.data);
+                // loader.hideLoading();
+                // if (isopendata.status == 1) {
+                //   if (isopendata.isCartEmpty == "0") {
+                //     if (namepay == "COD") {
+                //       placeorderAPI("1");
+                //     } else if (namepay == "Wallet") {
+                //       print(widget.ordertotal!);
+                //       print(paymentlist!.totalWallet);
+                //       if (double.parse(widget.ordertotal!) >=
+                //           double.parse(paymentlist!.totalWallet.toString())) {
+                //         loader.showErroDialog(
+                //           description: LocaleKeys
+                //                   .You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option
+                //               .tr(),
+                //         );
+                //       } else {
+                //         placeorderAPI("2");
+                //       }
+                //     } else if (namepay == "RazorPay") {
+                //       Get.to(() => orderrazorpay(
+                //             // order
+                //             widget.ordertotal,
+                //             widget.ordertype,
+                //             widget.offer_code,
+                //             widget.discount_amount,
+                //             widget.tax_amount,
+                //             widget.delivery_charge,
+                //             //address
+                //             widget.addresstype,
+                //             widget.address,
+                //             widget.area,
+                //             widget.houseno,
+                //             widget.lang,
+                //             widget.lat,
+                //             // extra
+                //             widget.ordernote,
+                //             //key
+                //             public_key,
+                //             secret_key,
+                //             currency,
+                //           ));
+                //     } else if (namepay == "Stripe") {
+                //       print("object");
+                //       Get.to(() => orderstripe(
+                //             //order
+                //             widget.ordertotal,
+                //             widget.ordertype,
+                //             widget.offer_code,
+                //             widget.discount_amount,
+                //             widget.tax_amount,
+                //             widget.delivery_charge,
+                //             // address
+                //             widget.addresstype,
+                //             widget.address,
+                //             widget.area,
+                //             widget.houseno,
+                //             widget.lang,
+                //             widget.lat,
+                //             //extra
+                //             widget.ordernote,
+                //           ));
+                //     } else if (namepay == "Flutterwave") {
+                //       print(currency);
+                //       Get.to(() => orderflutterwave(
+                //             widget.ordertotal,
+                //             widget.ordertype,
+                //             widget.offer_code,
+                //             widget.discount_amount,
+                //             widget.tax_amount,
+                //             widget.delivery_charge,
+                //             //address
+                //             widget.addresstype,
+                //             widget.address,
+                //             widget.area,
+                //             widget.houseno,
+                //             widget.lang,
+                //             widget.lat,
+                //             //
+                //             widget.ordernote,
+                //             //key
+                //             public_key,
+                //             secret_key,
 
-                            encryption_key,
-                            currency,
-                          ));
-                      print("Flutterwave");
-                    } else if (namepay == "Paystack") {
-                      Get.to(() => order_paystack(
-                            widget.ordertotal,
-                            widget.ordertype,
-                            widget.offer_code,
-                            widget.discount_amount,
-                            widget.tax_amount,
-                            widget.delivery_charge,
-                            //address
-                            widget.addresstype,
-                            widget.address,
-                            widget.area,
-                            widget.houseno,
-                            widget.lang,
-                            widget.lat,
-                            //
-                            widget.ordernote,
-                            //key
-                            public_key,
-                            secret_key,
-                            encryption_key,
-                            currency,
-                          ));
-                      print("Paystack");
-                    }
-                  } else {
-                    Get.to(() => Homepage(0));
-                  }
-                } else {
-                  loader.showErroDialog(description: isopendata.message);
-                }
+                //             encryption_key,
+                //             currency,
+                //           ));
+                //       print("Flutterwave");
+                //     } else if (namepay == "Paystack") {
+                //       Get.to(() => order_paystack(
+                //             widget.ordertotal,
+                //             widget.ordertype,
+                //             widget.offer_code,
+                //             widget.discount_amount,
+                //             widget.tax_amount,
+                //             widget.delivery_charge,
+                //             //address
+                //             widget.addresstype,
+                //             widget.address,
+                //             widget.area,
+                //             widget.houseno,
+                //             widget.lang,
+                //             widget.lat,
+                //             //
+                //             widget.ordernote,
+                //             //key
+                //             public_key,
+                //             secret_key,
+                //             encryption_key,
+                //             currency,
+                //           ));
+                //       print("Paystack");
+                //     }
+                //   } else {
+                //     Get.to(() => Homepage(0));
+                //   }
+                // } else {
+                //   loader.showErroDialog(description: isopendata.message);
+                // }
               }
             },
             style: TextButton.styleFrom(
