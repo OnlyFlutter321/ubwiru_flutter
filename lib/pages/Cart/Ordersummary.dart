@@ -704,7 +704,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                           LocaleKeys.Home.tr(),
                                           style: TextStyle(
                                               fontFamily: 'Poppins_semibold',
-                                              // color: color.greenbutton,
+                                              // color: color.greenbutton
                                               fontSize: 9.sp),
                                         ),
                                       ] else if (Addressdata!.addressType ==
