@@ -4,9 +4,7 @@ import 'dart:async';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:ecommerce_user/pages/Authentication/Login.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_user/Model/cartpage/Qtyupdatemodel.dart';
 import 'package:ecommerce_user/Model/favoritepage/addtocartmodel.dart';
 import 'package:ecommerce_user/Model/home/homescreenmodel.dart';
@@ -16,19 +14,23 @@ import 'package:ecommerce_user/common%20class/Allformater.dart';
 import 'package:ecommerce_user/common%20class/color.dart';
 import 'package:ecommerce_user/common%20class/prefs_name.dart';
 import 'package:ecommerce_user/config/API/API.dart';
+import 'package:ecommerce_user/pages/Authentication/Login.dart';
 import 'package:ecommerce_user/pages/Favorite/showvariation.dart';
 import 'package:ecommerce_user/pages/Home/Homepage.dart';
 import 'package:ecommerce_user/pages/Home/categoriesinfo.dart';
 import 'package:ecommerce_user/pages/Home/product.dart';
+import 'package:ecommerce_user/translation/locale_keys.g.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ecommerce_user/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import 'Categories.dart';
 import 'Search.dart';
 import 'Trendingfood.dart';
-import 'package:get/get.dart' hide Trans;
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -57,7 +59,6 @@ class _HomescreenState extends State<Homescreen> {
   // Timer? _timer;
 
   Future homescreenAPI() async {
-    
     // await Future.delayed(Duration(seconds: 3));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     username = (prefs.getString(UD_user_name) ?? "");
@@ -72,14 +73,12 @@ class _HomescreenState extends State<Homescreen> {
         DefaultApi.appUrl + PostAPI.Home,
         data: map,
       );
-print('start');
 
       var finalist = await response.data;
-      print(finalist);
 
       homedata = homescreenmodel.fromJson(finalist);
 
-      print("appdata");
+      print(finalist);
       // print(homedata!.recommendeditems);
       prefs.setString(UD_user_id, homedata!.getprofile!.id.toString());
       prefs.setString(UD_user_name, homedata!.getprofile!.name.toString());
@@ -225,44 +224,57 @@ print('start');
                     appBar: AppBar(
                       automaticallyImplyLeading: false,
                       title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
-                                LocaleKeys.welcome.tr(),
-                                style: TextStyle(
-                                    fontFamily: "Poppins", fontSize: 11.sp),
+                              // SizedBox(height: 12,),
+                              // Text(
+                              //   LocaleKeys.welcome.tr(),
+                              //   style: TextStyle(
+                              //       fontFamily: "Poppins", fontSize: 11.sp),
+                              // ),
+                              // if (username == "") ...[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: 180,
+                                      child: Image.asset(
+                                        "Assets/logo2.png",
+                                        fit: BoxFit.fitHeight,
+                                      )),
+                                  // Text(
+                                  //   LocaleKeys.Gravityinfotech.tr(),
+                                  //   style: TextStyle(
+                                  //       fontFamily: "Poppins_bold",
+                                  //       fontSize: 14.sp),
+                                  // ),
+                                ],
                               ),
-                              if (username == "") ...[
-                                Text(
-                                  LocaleKeys.Gravityinfotech.tr(),
-                                  style: TextStyle(
-                                      fontFamily: "Poppins_bold",
-                                      fontSize: 14.sp),
-                                ),
-                              ] else ...[
-                                Text(
-                                  username,
-                                  style: TextStyle(
-                                      fontFamily: "Poppins_bold",
-                                      fontSize: 14.sp),
-                                ),
-                              ]
+                              // ] else ...[
+                              //   Text(
+                              //     username,
+                              //     style: TextStyle(
+                              //         fontFamily: "Poppins_bold",
+                              //         fontSize: 14.sp),
+                              //   ),
+                              // ]
                             ],
                           ),
-                          if (username != "") ...[
-                            SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      profileimage.toString(),
-                                      fit: BoxFit.fill,
-                                    )))
-                          ]
+                          // if (username != "") ...[
+                          //   SizedBox(
+                          //       height: 50,
+                          //       width: 50,
+                          //       child: ClipRRect(
+                          //           borderRadius: BorderRadius.circular(50),
+                          //           child: Image.network(
+                          //             profileimage.toString(),
+                          //             fit: BoxFit.fill,
+                          //           )))
+                          // ]
                         ],
                       ),
                       // systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -327,7 +339,7 @@ print('start');
                                         right: 2.w,
                                       ),
                                       // height: 20.h,
-                                      width: 80.w,
+                                      width: Get.width,
                                       child: GestureDetector(
                                         onTap: () {
                                           if (homedata!.banners!
@@ -361,7 +373,7 @@ print('start');
                                             homedata!.banners!
                                                 .topbanners![index].image
                                                 .toString(),
-                                            fit: BoxFit.contain,
+                                            fit: BoxFit.fitWidth,
                                           ),
                                         ),
                                       ),
@@ -382,9 +394,10 @@ print('start');
                                 ),
                                 Text(
                                   LocaleKeys.Categories.tr(),
-                                  style: TextStyle(
-                                      fontFamily: "Poppins_bold",
-                                      fontSize: 15.sp),
+                                  style: GoogleFonts.anekLatin(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                                 Spacer(),
                                 IconButton(
@@ -453,14 +466,15 @@ print('start');
                                               )),
                                           Expanded(
                                             child: Text(
-                                                homedata!.categories![index]
-                                                    .categoryName
-                                                    .toString(),
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    fontFamily: "Poppins",
-                                                    fontSize: 9.5.sp)),
-                                          )
+                                              homedata!.categories![index]
+                                                  .categoryName
+                                                  .toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontFamily: "Poppins",
+                                                  fontSize: 9.5.sp),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -483,9 +497,10 @@ print('start');
                                 ),
                                 Text(
                                   LocaleKeys.Trending.tr(),
-                                  style: TextStyle(
-                                      fontFamily: "Poppins_bold",
-                                      fontSize: 15.sp),
+                                  style: GoogleFonts.anekLatin(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                                 Spacer(),
                                 IconButton(
@@ -1756,9 +1771,14 @@ print('start');
                                 ),
                                 Text(
                                   LocaleKeys.Recommended.tr(),
-                                  style: TextStyle(
-                                      fontFamily: "Poppins_bold",
-                                      fontSize: 15.sp),
+                                  style: GoogleFonts.anekLatin(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+
+                                  // TextStyle(
+                                  //  fontFamily: "Poppins_bold",
+                                  //  fontSize: 15.sp),
                                 ),
                                 Spacer(),
                                 IconButton(
@@ -2535,17 +2555,17 @@ print('start');
                                     ))),
                             SizedBox(height: 3.h),
                           ],
-                          if (homedata!.appdata!.isAppBottomImage.toString() ==
-                              "1") ...[
-                            SizedBox(
-                              width: double.infinity,
-                              child: Image.network(
-                                homedata!.appdata!.appBottomImageUrl.toString(),
-                                height: MediaQuery.of(context).size.height / 2,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ],
+                          // if (homedata!.appdata!.isAppBottomImage.toString() ==
+                          //     "1") ...[
+                          //   SizedBox(
+                          //     width: double.infinity,
+                          //     child: Image.network(
+                          //       homedata!.appdata!.appBottomImageUrl.toString(),
+                          //       height: MediaQuery.of(context).size.height / 2,
+                          //       fit: BoxFit.fill,
+                          //     ),
+                          //   ),
+                          // ],
                         ],
                       ),
                     ),

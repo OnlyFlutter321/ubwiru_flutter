@@ -7,7 +7,7 @@ import 'package:ecommerce_user/common%20class/color.dart';
 class loader {
   // show error; Dialog
   static void showErroDialog(
-      {String title = 'Single E-commerce',
+      {String title = 'India hopping bazaar',
       String? description = 'Something went wrong'}) {
     Get.dialog(
       Dialog(

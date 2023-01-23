@@ -46,9 +46,9 @@ abstract class  LocaleKeys {
   static const Welcome = 'Welcome';
   static const Search_Here = 'Search_Here';
   static const Categories = 'Categories';
-  static const Trending = 'Trending';
-  static const Todays_special = 'Todays_special';
-  static const Recommended = 'Recommended';
+  static const Trending = 'Deals of the day';
+  static const Todays_special = 'Featured Products';
+  static const Recommended = 'Top Brands';
   static const Testimonials = 'Testimonials';
   static const ADD = 'ADD';
   static const The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item = 'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item';

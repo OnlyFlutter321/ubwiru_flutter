@@ -12,7 +12,7 @@ class PostAPI {
   static var resendotp = "resendotp";
   static var forgotPassword = "forgotPassword";
   static var ChangePassword = "changepassword";
-  static var addrating = "ratting";
+  static var addrating = "rating";
   static var contact = "contact";
   static var Bookatable = "booktable";
   static var Getaddress = "getaddress";

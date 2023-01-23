@@ -1,25 +1,25 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, prefer_const_constructors, must_be_immutable, file_names, use_key_in_widget_constructors, avoid_print
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get/get.dart' hide Trans;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ecommerce_user/common%20class/prefs_name.dart';
-import 'package:ecommerce_user/pages/Authentication/Otp.dart';
-import 'package:ecommerce_user/pages/Authentication/tearms_condition.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ecommerce_user/Model/signupmodel.dart';
 import 'package:ecommerce_user/Widgets/loader.dart';
+import 'package:ecommerce_user/common%20class/color.dart';
+import 'package:ecommerce_user/common%20class/prefs_name.dart';
+import 'package:ecommerce_user/pages/Authentication/tearms_condition.dart';
+import 'package:ecommerce_user/pages/Home/Homepage.dart';
 import 'package:ecommerce_user/translation/locale_keys.g.dart';
 import 'package:ecommerce_user/utils/validator.dart/validator.dart';
-import 'package:sizer/sizer.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:ecommerce_user/common%20class/color.dart';
-import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
+
 import '../../config/API/API.dart';
 
 class Signup extends StatefulWidget {
-  
   String? emailid;
   String? name;
   String? type;
@@ -51,17 +51,10 @@ class _SignupState extends State<Signup> {
   String? registertype;
 
   SignupAPI(type) async {
-   
     try {
       loader.showLoading();
-      var map = 
-      registertype == "mobile"
-          ? 
-
-
-         
-
-          {
+      var map = registertype == "mobile"
+          ? {
               "name": Name.text,
               "email": Email.text,
               "mobile": "+${countrycode! + Mobile.text}",
@@ -73,8 +66,7 @@ class _SignupState extends State<Signup> {
               "password": Password.text,
               "token": "Googletoken"
             }
-          : 
-          {
+          : {
               "name": Name.text.toString(),
               "email": Email.text.toString(),
               "password": Password.text.toString(),
@@ -86,42 +78,40 @@ class _SignupState extends State<Signup> {
               "register_type": "email",
               "token": Googletoken
             };
-    
+
       var response =
           await Dio().post(DefaultApi.appUrl + PostAPI.register, data: map);
-      
+
       // ddata = response.data;
       print('ye raha = $ddata');
-      var finallist =  response.data;
-     print(finallist);
-       Signupdata = Signupmodel.fromJson(finallist);
-      
-      loader.hideLoading();
+      var finallist = response.data;
+      print(finallist);
+      Signupdata = Signupmodel.fromJson(finallist);
 
-      if (Signupdata!.status == 1) 
-      // if (ddata == '1') 
+      loader.hideLoading();
+      Get.offAll(() => Homepage(0));
+      if (Signupdata!.status == 1)
+      // if (ddata == '1')
       {
         print(Signupdata);
-// 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Otp(registertype == "mobile"
-                ? "+${countrycode! + Mobile.text.toString()}"
-                : Email.value.text),
-          ),
-        );
-      } 
-      else if (Signupdata!.status == 0) {
+//
+        Get.offAll(() => Homepage(0));
+        // Otp(registertype == "mobile"
+        // ? "+${countrycode! + Mobile.text.toString()}"
+        // : Email.value.text),
+
+      } else if (Signupdata!.status == 0) {
+        Get.offAll(() => Homepage(0));
         loader.showErroDialog(description: Signupdata!.message);
         print(Signupdata!.message);
-      } 
-      else if (Signupdata!.status == 3) {
-        Get.to(
-          () => Otp(registertype == "mobile"
-              ? "+${countrycode! + Mobile.text.toString()}"
-              : Email.value.text),
-        );
+      } else if (Signupdata!.status == 3) {
+        //method for registering
+
+        Get.offAll(() => Homepage(0));
+        // Otp(registertype == "mobile"
+        // ? "+${countrycode! + Mobile.text.toString()}"
+        // : Email.value.text),
+
       } else {
         loader.showErroDialog(description: Signupdata!.message);
       }

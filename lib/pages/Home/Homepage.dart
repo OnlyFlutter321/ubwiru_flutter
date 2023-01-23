@@ -261,7 +261,7 @@ class _HomepageState extends State<Homepage> {
     Homescreen(),
     Favorite(),
     Viewcart(),
-    Orderhistory(),
+    // Orderhistory(),
     Profilepage()
   ];
 
@@ -309,7 +309,7 @@ class _HomepageState extends State<Homepage> {
                 Homescreen(),
                 Favorite(),
                 Viewcart(),
-                Orderhistory(),
+                // Orderhistory(),
                 Profilepage()
               ],
             ),
@@ -400,19 +400,19 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                     )),
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'Assets/Icons/Order.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                  label: "",
-                  activeIcon: SvgPicture.asset(
-                    'Assets/Icons/Orderdark.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                ),
+                // BottomNavigationBarItem(
+                //   icon: SvgPicture.asset(
+                //     'Assets/Icons/Order.svg',
+                //     height: height.bottombaricon,
+                //     color: themenofier.isdark ? Colors.white : Colors.black,
+                //   ),
+                //   label: "",
+                //   activeIcon: SvgPicture.asset(
+                //     'Assets/Icons/Orderdark.svg',
+                //     height: height.bottombaricon,
+                //     color: themenofier.isdark ? Colors.white : Colors.black,
+                //   ),
+                // ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     'Assets/Icons/Profile.svg',
