@@ -76,9 +76,12 @@ class _CategoriespageState extends State<Categoriespage> {
                       ),
                       Text(
                         widget.categoriesdata![index].categoryName.toString(),
-                        style:
-                            TextStyle(fontFamily: 'Poppins', fontSize: 11.sp),
-                      )
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 );
